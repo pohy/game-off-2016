@@ -52,3 +52,5 @@ jspm_packages
 # JetBrains
 
 .idea/
+
+public/*.js
