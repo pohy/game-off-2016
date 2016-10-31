@@ -1,1 +1,3 @@
-window.onload = () => alert('lololk')
+import init from './init';
+
+window.onload = init;

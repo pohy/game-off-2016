@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: [
-        path.join(__dirname, 'src', 'index.js'),
-        'webpack-dev-server/client?http://localhost:8080'
+        'babel-polyfill',
+        path.join(__dirname, 'src')
     ],
     output: {
         path: path.join(__dirname, 'dist'),
@@ -19,11 +19,10 @@ module.exports = {
             include: path.join(__dirname, 'src'),
             loader: 'babel-loader',
             query: {
-                presets: ['es2015']
+                presets: ['es2015', 'stage-0']
             }
         }]
     },
-    debug: true,
     devServer: {
         contentBase: path.join(__dirname, 'src')
     },
