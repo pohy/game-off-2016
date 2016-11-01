@@ -1,3 +1,7 @@
-import init from './init';
+import initThree from './init-three';
+import initServiceWorker from './init-service-worker';
 
-window.onload = init;
+window.onload = () => {
+    initThree();
+    initServiceWorker();
+};
