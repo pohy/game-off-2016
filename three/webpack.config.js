@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: [
-        'babel-polyfill',
         path.join(__dirname, 'src')
     ],
     output: {
@@ -20,7 +19,7 @@ module.exports = {
             include: path.join(__dirname, 'src'),
             loader: 'babel-loader',
             query: {
-                presets: ['es2015', 'stage-0']
+                presets: ['es2015']
             }
         }]
     },
