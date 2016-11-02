@@ -15,6 +15,14 @@ export default function() {
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     // const cube = new THREE.Mesh(geometry, material);
     // scene.add(cube);
+    const floorGeometry = new THREE.PlaneGeometry(2000, 2000);
+    const floorMaterial = new THREE.MeshBasicMaterial({color: 0xef58eb, side: THREE.DoubleSide});
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    floor.rotation.x = 90;
+    floor.position.y = -3;
+    floor.position.z = -1000;
+    scene.add(floor);
+
     camera.position.z = 5;
     const rows = 9;
     const levels = 3;
