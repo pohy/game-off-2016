@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import loadOBJ from './load-obj';
 
 export default function() {
     window.addEventListener('resize', onResize, false);
@@ -18,15 +19,35 @@ export default function() {
     scene.add(floor);
 
     const cubes = createCubes();
-    cubes.forEach((cube) => scene.add(cube));
+    // cubes.forEach((cube) => scene.add(cube));
 
     const clock = new THREE.Clock();
+
+    const helmetMaterial = new THREE.MeshBasicMaterial({color: 0x3077c9});
+    let helmet;
+    loadOBJ('/assets/helmet.obj')
+        .then((object) => {
+            object.traverse((child) => {
+                if (child instanceof THREE.Mesh) {
+                    child.material = helmetMaterial;
+                }
+            });
+            object.position.z = -5;
+            const scale = 0.1;
+            object.scale.x = scale;
+            object.scale.y = scale;
+            object.scale.z = scale;
+            helmet = object;
+            scene.add(object)
+        })
+        .catch(console.error);
 
     render();
     function render() {
         requestAnimationFrame(render);
 
         animateCubes(cubes, clock);
+        helmet.rotation.y += Math.sin(clock.getElapsedTime()) * Math.random() * 0.1;
 
         renderer.render(scene, camera);
     }

@@ -24,7 +24,7 @@ module.exports = {
         }]
     },
     devServer: {
-        contentBase: path.join(__dirname, 'src')
+        contentBase: path.join(__dirname, 'public')
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -34,6 +34,9 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: path.join(__dirname, 'public'),
             ignore: ['index.html']
-        }])
+        }]),
+        new webpack.ProvidePlugin({
+            THREE: 'three'
+        })
     ]
 };
