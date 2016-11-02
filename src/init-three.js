@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 export default function() {
-    window.onresize = resize;
+    window.addEventListener('resize', onResize, false);
 
     const {innerWidth: width, innerHeight: height} = window;
     const aspectRatio = width / height;
@@ -56,10 +56,11 @@ export default function() {
         renderer.render(scene, camera);
     }
 
-    function resize() {
+    function onResize() {
         const {innerWidth: width, innerHeight: height} = window;
-        renderer.setSize(width, height);
         camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
     }
 
     function randomRange(max, min) {
