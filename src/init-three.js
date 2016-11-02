@@ -12,9 +12,7 @@ export default function() {
     renderer.setSize(width, height);
     document.body.appendChild(renderer.domElement);
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    // const cube = new THREE.Mesh(geometry, material);
-    // scene.add(cube);
+    const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
     const floorGeometry = new THREE.PlaneGeometry(2000, 2000);
     const floorMaterial = new THREE.MeshBasicMaterial({color: 0xef58eb, side: THREE.DoubleSide});
     const floor = new THREE.Mesh(floorGeometry, floorMaterial);
@@ -32,13 +30,13 @@ export default function() {
             const material = new THREE.MeshBasicMaterial({
                 color: 0x00ff00
             });
-            return new THREE.Mesh(geometry, material);
+            return new THREE.Mesh(boxGeometry, material);
         });
     cubes.forEach((cube, i) => {
-        scene.add(cube);
         cube.position.x = (i - cubes.length / 2) * 0.3;
         cube.position.y = (i % rows - rows / 2) * 1.5;
         cube.position.z = i % levels;
+        scene.add(cube);
     });
 
     const clock = new THREE.Clock();
